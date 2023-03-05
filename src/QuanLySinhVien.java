@@ -3,17 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+
 /**
  *
  * @author HangNT
  */
 public class QuanLySinhVien {
 
-    Scanner sc = new Scanner(System.in);
-
     public SinhVien inputSV() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ma: ");
         String ma = sc.nextLine();
         System.out.println("Nhap ten: ");
@@ -38,27 +37,15 @@ public class QuanLySinhVien {
         return sinhVien;
     }
 
-    public void hienThiDsachSV(List<SinhVien> listSV) {
+    public void hienThiDsachSV(ArrayList<SinhVien> listSV) {
         for (SinhVien sinhVien : listSV) {
-            System.out.println("Ma: " + sinhVien.getMa());
-            System.out.println("Ten: " + sinhVien.getTen());
-            System.out.println("Tuoi: " + sinhVien.getTuoi());
-            if (sinhVien.getGioiTinh() == 0) {
-                System.out.println("Gioi tinh: Nam");
-            } else {
-                System.out.println("Gioi tinh: Nu");
-            }
-            System.out.println("Que quan: " + sinhVien.getQueQuan());
-            System.out.println("Ky hoc: " + sinhVien.getKyHoc());
-            System.out.println("Nganh hoc: " + sinhVien.getNganhHoc());
-            System.out.println("Diem trung binh: " + sinhVien.diemTrungBinh(sinhVien.getDiemHoa(), sinhVien.getDiemLy(), sinhVien.getDiemToan()));
-            System.out.println("");
+            sinhVien.display();
         }
     }
 
-    public List<SinhVien> sinhVienDTBCaoNhat(List<SinhVien> listSV) {
+    public ArrayList<SinhVien> sinhVienDTBCaoNhat(ArrayList<SinhVien> listSV) {
         SinhVien sv = listSV.get(0);
-        List<SinhVien> listSVCoDTBCaoNhat = new ArrayList<>();
+        ArrayList<SinhVien> listSVCoDTBCaoNhat = new ArrayList<>();
         double diemTBMax = sv.diemTrungBinh(sv.getDiemHoa(), sv.getDiemLy(), sv.getDiemToan());
         for (SinhVien sinhVien : listSV) {
             if (sinhVien.diemTrungBinh(sinhVien.getDiemHoa(), sinhVien.getDiemLy(), sinhVien.getDiemToan()) > diemTBMax) {
@@ -73,8 +60,8 @@ public class QuanLySinhVien {
         return listSVCoDTBCaoNhat;
     }
 
-    public List<SinhVien> timKiemSVTheoTen(List<SinhVien> listSV, String tenSV) {
-        List<SinhVien> listSVTheoTen = new ArrayList<>();
+    public ArrayList<SinhVien> timKiemSVTheoTen(ArrayList<SinhVien> listSV, String tenSV) {
+        ArrayList<SinhVien> listSVTheoTen = new ArrayList<>();
         for (SinhVien sinhVien : listSV) {
             if (sinhVien.getTen().contains(tenSV)) {
                 listSVTheoTen.add(sinhVien);
@@ -83,7 +70,7 @@ public class QuanLySinhVien {
         return listSVTheoTen;
     }
 
-    public boolean xoaSV(List<SinhVien> listSV, String maSV) {
+    public boolean xoaSV(ArrayList<SinhVien> listSV, String maSV) {
         boolean isRemove = false;
         for (int i = 0; i < listSV.size(); i++) {
             if (listSV.get(i).getMa().equals(maSV)) {
@@ -94,8 +81,8 @@ public class QuanLySinhVien {
         return isRemove;
     }
 
-    public List<SinhVien> timSvTheoKhoangTuoi(List<SinhVien> listSV, int tuoiMin, int tuoiMax) {
-        List<SinhVien> listSVTheoTuoi = new ArrayList<>();
+    public ArrayList<SinhVien> timSvTheoKhoangTuoi(ArrayList<SinhVien> listSV, int tuoiMin, int tuoiMax) {
+        ArrayList<SinhVien> listSVTheoTuoi = new ArrayList<>();
         for (SinhVien sinhVien : listSV) {
             if (sinhVien.getTuoi() >= tuoiMin && sinhVien.getTuoi() <= tuoiMax) {
                 listSVTheoTuoi.add(sinhVien);
@@ -104,7 +91,8 @@ public class QuanLySinhVien {
         return listSVTheoTuoi;
     }
 
-    public void keThua() {
+    public NhanVien keThua() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ma: ");
         String ma = sc.nextLine();
         System.out.println("Nhap ten: ");
@@ -117,18 +105,6 @@ public class QuanLySinhVien {
         String queQuan = sc.nextLine();
         System.out.println("Nhap luong theo ngay: ");
         double luongTheoNgay = Double.valueOf(sc.nextLine());
-        NhanVien nhanVien = new NhanVien(luongTheoNgay, ma, ten, tuoi, gioiTinh, queQuan);
-        System.out.println("Thong tin nhan vien vua nhap: ");
-        System.out.println("Ma: " + nhanVien.getMa());
-        System.out.println("Ten: " + nhanVien.getTen());
-        System.out.println("Tuoi: " + nhanVien.getTuoi());
-        if (nhanVien.getGioiTinh() == 0) {
-            System.out.println("Gioi tinh: Nam");
-        } else {
-            System.out.println("Gioi tinh: Nu");
-        }
-        System.out.println("Que quan: " + nhanVien.getQueQuan());
-        System.out.println("Luong theo ngay: " + nhanVien.getLuongTheoNgay());
-        System.out.println("");
+        return new NhanVien(luongTheoNgay, ma, ten, tuoi, gioiTinh, queQuan);
     }
 }

@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -14,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        List<SinhVien> listSV = new ArrayList<>();
+        ArrayList<SinhVien> listSV = new ArrayList<>();
         int luaChon;
         QuanLySinhVien qlsv = new QuanLySinhVien();
         do {
@@ -47,15 +46,15 @@ public class Main {
                     break;
                 }
                 case 3: {
-                    List<SinhVien> listDiemCao = qlsv.sinhVienDTBCaoNhat(listSV);
+                    ArrayList<SinhVien> listDiemCao = qlsv.sinhVienDTBCaoNhat(listSV);
                     qlsv.hienThiDsachSV(listDiemCao);
                     break;
                 }
                 case 4: {
                     System.out.println("Nhap ten SV can tim: ");
                     String tenSV = sc.nextLine();
-                    List<SinhVien> listTheoTen = qlsv.timKiemSVTheoTen(listSV, tenSV);
-                    if (listTheoTen.size() > 0) {
+                    ArrayList<SinhVien> listTheoTen = qlsv.timKiemSVTheoTen(listSV, tenSV);
+                    if (listTheoTen.isEmpty()) {
                         qlsv.hienThiDsachSV(listTheoTen);
                     } else {
                         System.out.println("Khong tim thay sinh vien nao co ten " + tenSV);
@@ -77,8 +76,8 @@ public class Main {
                     int tuoiMin = Integer.valueOf(sc.nextLine());
                     System.out.println("Nhap tuoi max: ");
                     int tuoiMax = Integer.valueOf(sc.nextLine());
-                    List<SinhVien> listSVTheoTuoi = qlsv.timSvTheoKhoangTuoi(listSV, tuoiMin, tuoiMax);
-                    if (listSVTheoTuoi.size() > 0) {
+                    ArrayList<SinhVien> listSVTheoTuoi = qlsv.timSvTheoKhoangTuoi(listSV, tuoiMin, tuoiMax);
+                    if (listSVTheoTuoi.isEmpty()) {
                         System.out.println("Dsach sv co do tuoi tu " + tuoiMin + " - " + tuoiMax + ":");
                         qlsv.hienThiDsachSV(listSVTheoTuoi);
                     } else {
@@ -87,7 +86,8 @@ public class Main {
                     break;
                 }
                 case 7: {
-                    qlsv.keThua();
+                    NhanVien nv = qlsv.keThua();
+                    nv.display();
                     break;
                 }
                 case 0: {

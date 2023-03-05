@@ -65,4 +65,15 @@ public class Nguoi {
         this.queQuan = queQuan;
     }
 
+    public void display() {
+        System.out.println("Ma: " + ma);
+        System.out.println("Ten: " + ten);
+        System.out.println("Tuoi: " + tuoi);
+        if (gioiTinh == 0) {
+            System.out.println("Gioi tinh: Nam");
+        } else {
+            System.out.println("Gioi tinh: Nu");
+        }
+        System.out.println("Que quan: " + queQuan);
+    }
 }
