@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -14,6 +15,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         int luaChon;
         QuanLySinhVien qlsv = new QuanLySinhVien();
+        ArrayList<SinhVien> lists = new ArrayList<>();
         do {
             System.out.println("+----------Menu----------+");
             System.out.println("    1.Them SV");
@@ -31,7 +33,7 @@ public class Main {
                 case 1: {
                     String tiepTuc = "";
                     do {
-                        qlsv.inputSV();
+                        qlsv.inputSV(lists);
                         System.out.println("Them 1 sinh vien?");
                         System.out.println("Vui long nhap Y (YES) or N(NO)");
                         tiepTuc = sc.nextLine();
@@ -39,23 +41,31 @@ public class Main {
                     break;
                 }
                 case 2: {
-                    qlsv.hienThiDsachSV();
+                    qlsv.hienThiDsachSV(lists);
                     break;
                 }
                 case 3: {
-                    qlsv.sinhVienDTBCaoNhat();
+                    qlsv.sinhVienDTBCaoNhat(lists);
                     break;
                 }
                 case 4: {
-                    qlsv.timKiemSVTheoTen();
+                    System.out.print("Moi nhap: ");
+                    String tenSearch = sc.nextLine();
+                    qlsv.timKiemSVTheoTen(lists, tenSearch);
                     break;
                 }
                 case 5: {
-                    qlsv.xoaSV();
+                    System.out.print("Moi nhap: ");
+                    String maXoa = sc.nextLine();
+                    qlsv.xoaSV(lists, maXoa);
                     break;
                 }
                 case 6: {
-                    qlsv.timSvTheoKhoangTuoi();
+                    System.out.print("Moi nhap tuoi max: ");
+                    int tuoiMax = Integer.valueOf(sc.nextLine());
+                    System.out.print("Moi nhap tuoi min: ");
+                    int tuoiMin = Integer.valueOf(sc.nextLine());
+                    qlsv.timSvTheoKhoangTuoi(lists, tuoiMax, tuoiMin);
                     break;
                 }
                 case 7: {

@@ -30,4 +30,9 @@ public class NhanVien extends Nguoi {
         this.luongTheoNgay = luongTheoNgay;
     }
 
+    @Override
+    public void display() {
+        super.display();
+        System.out.println("luongTheoNgay: " + luongTheoNgay);
+    }
 }
